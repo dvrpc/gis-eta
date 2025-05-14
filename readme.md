@@ -1,8 +1,8 @@
-# DVRPC Equity Through Access (ETA) GIS analysis
+# DVRPC CHSTP (Coordinated Human Service Transportation Planning) GIS analysis
 
-The Equity Through Access (ETA) project is DVRPC’s update of the region’s Coordinated Human Services Transportation Plan (CHSTP). ETA seeks to improve economic and social opportunity in the region by expanding access to essential services for vulnerable populations - those who are more critically impacted by barriers and gaps in infrastructure, service coordination, and policies. Vulnerable populations are individuals who are low income, seniors, physically disabled, mentally disabled, and more likely to be transit dependent than the general population. Essential services are defined as destinations needed to meet a standard quality of life and include places of employment, grocery stores, schools, medical facilities, recreation/open space areas, senior centers, and centers for the developmentally disabled. This project responds to the changing CHSTP funding landscape and looks for new ways to promote accessible, affordable, and safe mobility.
+CHSTP (Coordinated Human Service Transportation Planning) seeks to improve economic and social opportunity in the region by expanding access to essential services for vulnerable populations - those who are more critically impacted by barriers and gaps in infrastructure, service coordination, and policies. Vulnerable populations are individuals who are low income, seniors, physically disabled, mentally disabled, and more likely to be transit dependent than the general population. Essential services are defined as destinations needed to meet a standard quality of life and include places of employment, grocery stores, schools, medical facilities, recreation/open space areas, senior centers, and centers for the developmentally disabled. This project responds to the changing CHSTP funding landscape and looks for new ways to promote accessible, affordable, and safe mobility.
 
-This repo builds a PostgreSQL database, loads necessary data, and completes the ETA GIS data analysis for the DVRPC region.
+This repo builds a PostgreSQL database, loads necessary data, and completes the CHSTP GIS data analysis for the DVRPC region.
 
 ## Inputs
 ### Geography
@@ -35,7 +35,7 @@ This repo builds a PostgreSQL database, loads necessary data, and completes the 
 ### Run
 1. Clone the repo
     ``` cmd
-    git clone https://github.com/dvrpc/eta.git
+    git clone https://github.com/dvrpc/gis-chstp.git
     ```
 2. Create a Python virtual environment with dependencies
 
@@ -76,7 +76,7 @@ All outputs are saved to the `output` schema in the database.  Scoring for each 
 - output.access_gap_rank
 - output.transit_rank
 
-and the total ETA scoring by blockgroup...
+and the total CHSTP scoring by blockgroup...
 
 - output.output
 

@@ -10,9 +10,9 @@ for var in "${required_vars[@]}"; do
     fi
 done
 
-DB_NAME="eta"
+DB_NAME="chstp"
 
-OUTPUT_DIR="$HOME/gis-eta/output"
+OUTPUT_DIR="$HOME/gis-chstp/output"
 
 # function to query table to geojson while also transforming to 4326 
 pg_to_geojson() {
@@ -96,13 +96,13 @@ FROM a JOIN output.all_stops s ON a.stop_id = s.stop_id AND a.gtfs = s.gtfs JOIN
 pg_to_geojson "SELECT ROW_NUMBER() OVER () AS id, es.* FROM output.es_point_locations es, input.census_blockgroups cb where st_intersects(es.geometry,cb.geometry)" "$OUTPUT_DIR/es.geojson"
 pg_to_geojson "SELECT ROW_NUMBER() OVER () AS id, os.* FROM input.open_space os" "$OUTPUT_DIR/os.geojson"
 
-tippecanoe -o $OUTPUT_DIR/eta_score.mbtiles -l eta_score -f -r1 -pk -pf $OUTPUT_DIR/output.geojson
+tippecanoe -o $OUTPUT_DIR/chstp_score.mbtiles -l chstp_score -f -r1 -pk -pf $OUTPUT_DIR/output.geojson
 tippecanoe -o $OUTPUT_DIR/walksheds.mbtiles -l walksheds -f -r1 -pk -pf $OUTPUT_DIR/walksheds.geojson
 tippecanoe -o $OUTPUT_DIR/transitstops.mbtiles -l transitstops -f -r1 -pk -pf $OUTPUT_DIR/transitstops.geojson
 tippecanoe -o $OUTPUT_DIR/es.mbtiles -l es -f -r1 -pk -pf $OUTPUT_DIR/es.geojson
 tippecanoe -o $OUTPUT_DIR/os.mbtiles -l os -f -r1 -pk -pf $OUTPUT_DIR/os.geojson
 
-tile-join -n eta -pk -f -o $OUTPUT_DIR/eta.mbtiles $OUTPUT_DIR/eta_score.mbtiles $OUTPUT_DIR/walksheds.mbtiles $OUTPUT_DIR/transitstops.mbtiles $OUTPUT_DIR/es.mbtiles $OUTPUT_DIR/os.mbtiles
+tile-join -n chstp -pk -f -o $OUTPUT_DIR/chstp.mbtiles $OUTPUT_DIR/chstp_score.mbtiles $OUTPUT_DIR/walksheds.mbtiles $OUTPUT_DIR/transitstops.mbtiles $OUTPUT_DIR/es.mbtiles $OUTPUT_DIR/os.mbtiles
 
 # rm $OUTPUT_DIR/*.geojson
-rm $OUTPUT_DIR/eta_score.mbtiles $OUTPUT_DIR/walksheds.mbtiles $OUTPUT_DIR/transitstops.mbtiles $OUTPUT_DIR/es.mbtiles $OUTPUT_DIR/os.mbtiles
+rm $OUTPUT_DIR/chstp_score.mbtiles $OUTPUT_DIR/walksheds.mbtiles $OUTPUT_DIR/transitstops.mbtiles $OUTPUT_DIR/es.mbtiles $OUTPUT_DIR/os.mbtiles
