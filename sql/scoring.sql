@@ -93,7 +93,7 @@ LEFT JOIN
     output.transit_ws tw ON cb.geoid = tw.geoid;
 COMMIT;
 
--- create ETA blockgroup output and calculate the total ETA score
+-- create CHSTP blockgroup output and calculate the total CHSTP score
 CREATE TABLE output.output as
     SELECT 
         cb.geoid,
@@ -124,7 +124,7 @@ CREATE TABLE output.output as
         coalesce(tr.depart_quantile,10) AS depart_quantile,
         coalesce(tr.walkshed_quantile,10) AS walkshed_quantile,
         coalesce(tr.transit_access_rank,10) AS transit_access_rank,
-        agr.access_gap_rank * (coalesce(tr.transit_access_rank,10)) AS eta_score,
+        agr.access_gap_rank * (coalesce(tr.transit_access_rank,10)) AS chstp_score,
         cb.geometry
     FROM 
         input.census_blockgroups cb

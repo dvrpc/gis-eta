@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 start_time = time.time()
 
-dbname = "eta"
+dbname = "chstp"
 schemas = ["input", "network", "output"]
 data_sources = "source/data_sources.json"
 crs = "EPSG:26918"
